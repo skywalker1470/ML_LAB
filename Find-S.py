@@ -1,19 +1,16 @@
-import pandas as pd
+import numpy as np 
+import pandas as pd 
 
-# Load the dataset
 df = pd.read_csv("enjoysport.csv")
 
-# Initialize the hypothesis with '-'
-hypothesis = ["-"] * (len(df.columns)-1)  # exclude the 'enjoy' column
+hypo = ["-"] * (len(df.columns)-1)
 
-# Iterate through each row where enjoy == 'yes'
-for index, row in df.iterrows():
-    if row["enjoy"].lower() == "yes":
-        for i in range(len(hypothesis)):
-            attr_value = row[i]
-            if hypothesis[i] == "-":
-                hypothesis[i] = attr_value
-            elif hypothesis[i] != attr_value:
-                hypothesis[i] = "?"
-# Output the final hypothesis
-print(hypothesis)
+for idx , rows in df.iterrows():
+    if (rows.iloc[-1].lower() == "yes") : 
+        for i in range(len(hypo)):
+            if(hypo[i] == '-'):
+                hypo[i] = rows[i]
+            elif(hypo[i] != rows[i] ):
+                hypo[i] = "?"
+
+print(hypo)
